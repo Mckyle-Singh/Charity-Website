@@ -1,0 +1,73 @@
+﻿@model LoginSec.Models.Disaster
+
+@{
+    ViewData["PageTitle"] = Model.DisasterId==0?"Create a new Disaster":"Edit Disaster";
+}
+
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5 " style="background-color:#212b36">
+        <form asp-action="AddOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="DisasterId" value="@Model.DisasterId"/>
+            <div class="mb-3">
+               <ejs-textbox id="type"  placeholder="Type" ejs-for="DisasterType" floatLabelType="Always">
+                </ejs-textbox>
+                    <span asp-validation-for="DisasterType" class="text-danger fs-6" ></span>
+                <span asp-validation-for="DisasterType" class="text-danger fs-6" ></span>
+            </div>
+
+            <div class="mb-3">
+               <ejs-textbox id="location"  placeholder="Location" ejs-for="DisasterLocation" floatLabelType="Always">
+                </ejs-textbox>
+                    <span asp-validation-for="DisasterLocation" class="text-danger fs-6" ></span>
+                <span asp-validation-for="DisasterLocation" class="text-danger fs-6" ></span>
+            </div>
+
+            <div class="mb-3">
+                <ejs-textbox id="description"  placeholder="Description" ejs-for="Description" floatLabelType="Always">
+                </ejs-textbox>
+                    <span asp-validation-for="Description" class="text-danger fs-6" ></span>
+                <span asp-validation-for="Description" class="text-danger fs-6" ></span>
+            </div>
+
+            <div class="mb-3">
+                <ejs-textbox id="aids"  placeholder="Required Aids" ejs-for="RequiredAids" floatLabelType="Always">
+                </ejs-textbox>
+                    <span asp-validation-for="RequiredAids" class="text-danger fs-6" ></span>
+                <span asp-validation-for="RequiredAids" class="text-danger fs-6" ></span>
+            </div>
+
+            <div class="mb-3">
+               <ejs-datepicker id="startdate" ejs-for="StartDate"placeholder="Start Date" floatLabelType="Always"
+                    format="MMM-dd-yyyy">
+                </ejs-datepicker>
+                 <span asp-validation-for="StartDate" class="text-danger fs-6"></span>
+            </div>
+
+            <div class="mb-3">
+                <ejs-datepicker id="enddate" ejs-for="EndDate" placeholder="End Date" floatLabelType="Always"
+                     format="MMM-dd-yyyy">
+                 </ejs-datepicker>
+                    <span asp-validation-for="EndDate" class="text-danger fs-6"></span>
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+               <ejs-button id="submit" type="submit" content="submit" cssClass="e-warning"></ejs-button>
+            </div>
+        </form>
+        </div>
+    </div>
+     <div class="col-md-5">
+                <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color:#212b36" >
+                    <i class="fa-solid fa-shapes fa-2xl"></i>
+                </div>
+         </div>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

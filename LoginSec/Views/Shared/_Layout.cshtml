@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donations Website</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+      @*<link href="https://cdn.syncfusion.com/ej2/20.2.43/bootstrap5-dark.css" rel="stylesheet"/>*@
+    <link href="https://cdn.syncfusion.com/ej2/20.2.43/bootstrap5-dark.css" rel="stylesheet"/>@*Dark style sheet*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LoginSec.styles.css" asp-append-version="true" />
+
+      <!-- Syncfusion ASP.NET Core controls scripts -->
+    <script src="https://cdn.syncfusion.com/ej2/20.2.43/dist/ej2.min.js"></script>
+
+</head>
+<body class="e-bigger">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-warning border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CharityHub</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MonetaryDonation" asp-action="AddOrEdit">Monetary Donation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="GoodsDonation" asp-action="AddOrEdit">Goods Donation</a>
+                        </li>
+                        <div class="dropdown">
+                                  <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item"  asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+                                    <a class="dropdown-item"  asp-area="" asp-controller="Disaster" asp-action="Index">Disasters</a>
+                                   <a class="dropdown-item"  asp-area="" asp-controller="GoodsDonation" asp-action="Index">Goods Donations</a>
+                                   <a class="dropdown-item"  asp-area="" asp-controller="MonetaryDonation" asp-action="Index">Monetary Donations</a>
+                                  </div>
+                            </div>
+                    </ul>
+                </div>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                 <main role="main" class="pb-3">
+                     <div class="row">
+                         <div class="col-md-7">
+                             <div class="d-flex flex-column mb-5">
+                                 <div class="d-flex mb-1">
+                                     <div class="flex-grow-1">
+                                        <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+                                     </div>
+                                     <div>
+                                        @if (ViewData["PageActionText"] != null)
+                                        {
+                                            <a class="btn btn-success bg-warning text-black"  href="@ViewData["PageActionUrl"]">
+                                                @ViewData["PageActionText"]
+                                            </a>
+                                        }
+                                      </div>
+                                 </div>
+                                 @*breadcrumb*@
+                                 <ejs-breadcrumb id="breadcrumb"></ejs-breadcrumb>
+                             </div>
+                         </div>
+                     </div>
+                    @RenderBody()
+                  </main>
+            </div>
+       </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+     <!-- Syncfusion Script Manager -->
+    <ejs-scripts></ejs-scripts>
+</body>
+</html>
