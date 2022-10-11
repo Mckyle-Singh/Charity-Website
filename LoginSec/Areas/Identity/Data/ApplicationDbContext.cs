@@ -12,5 +12,6 @@ namespace LoginSec.Areas.Identity.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Disaster> Disasters { get; set; }
         public DbSet<GoodsDonation> GoodsDonations { get; set; }
+        public DbSet<Monetary_Allocation> Monetary_Allocations { get; set; }
     }
 }
