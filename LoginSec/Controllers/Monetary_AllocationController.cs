@@ -26,10 +26,10 @@ namespace LoginSec.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        
 
-        // GET: Monetary_Allocation/Create
-        public IActionResult Create(int id = 0)
+
+        // GET: Monetary_Allocation/AddOrEdit
+        public IActionResult AddOrEdit(int id = 0)
         {
             PopulateDisasters();
             if (id == 0)
@@ -39,12 +39,12 @@ namespace LoginSec.Controllers
         }
 
 
-        // POST: Monetary_Allocation/Create
+        // POST: Monetary_Allocation/AddOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MonetaryId,DisasterId,Amount")] Monetary_Allocation monetary_Allocation)
+        public async Task<IActionResult> AddOrEdit([Bind("MonetaryId,DisasterId,Amount")] Monetary_Allocation monetary_Allocation)
         {
             if (ModelState.IsValid)
             {
