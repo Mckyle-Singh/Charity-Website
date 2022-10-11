@@ -1,0 +1,54 @@
+﻿@model IEnumerable<LoginSec.Models.Good_Allocation>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GoodsId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Disaster)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumItems)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoodsId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disaster.DisasterId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumItems)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GoodsAllocationId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GoodsAllocationId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GoodsAllocationId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
