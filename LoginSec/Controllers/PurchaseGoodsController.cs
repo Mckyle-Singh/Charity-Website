@@ -26,120 +26,46 @@ namespace LoginSec.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: PurchaseGoods/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+
+
+        // GET: PurchaseGoods/AddorEdit
+        public IActionResult AddorEdit(int id = 0)
         {
-            if (id == null || _context.PurchaseGoods == null)
-            {
-                return NotFound();
-            }
-
-            var purchaseGoods = await _context.PurchaseGoods
-                .Include(p => p.Disaster)
-                .FirstOrDefaultAsync(m => m.PurchaseId == id);
-            if (purchaseGoods == null)
-            {
-                return NotFound();
-            }
-
-            return View(purchaseGoods);
+            PopulateDisasters();
+            if (id == 0)
+                return View(new PurchaseGoods());
+            else
+                return View(_context.PurchaseGoods.Find(id));
         }
 
-        // GET: PurchaseGoods/Create
-        public IActionResult Create()
-        {
-            ViewData["DisasterId"] = new SelectList(_context.Disasters, "DisasterId", "DisasterId");
-            return View();
-        }
 
-        // POST: PurchaseGoods/Create
+
+
+        // POST: PurchaseGoods/AddorEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PurchaseId,ItemDescription,PurchaseAmount,Type,DisasterId,Date")] PurchaseGoods purchaseGoods)
+        public async Task<IActionResult> AddorEdit([Bind("PurchaseId,ItemDescription,PurchaseAmount,Type,DisasterId,Date")] PurchaseGoods purchaseGoods)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(purchaseGoods);
+                if (purchaseGoods.PurchaseId == 0)
+                    _context.Add(purchaseGoods);
+                else
+                    _context.Update(purchaseGoods);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DisasterId"] = new SelectList(_context.Disasters, "DisasterId", "DisasterId", purchaseGoods.DisasterId);
+            PopulateDisasters();
             return View(purchaseGoods);
         }
 
-        // GET: PurchaseGoods/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.PurchaseGoods == null)
-            {
-                return NotFound();
-            }
 
-            var purchaseGoods = await _context.PurchaseGoods.FindAsync(id);
-            if (purchaseGoods == null)
-            {
-                return NotFound();
-            }
-            ViewData["DisasterId"] = new SelectList(_context.Disasters, "DisasterId", "DisasterId", purchaseGoods.DisasterId);
-            return View(purchaseGoods);
-        }
 
-        // POST: PurchaseGoods/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PurchaseId,ItemDescription,PurchaseAmount,Type,DisasterId,Date")] PurchaseGoods purchaseGoods)
-        {
-            if (id != purchaseGoods.PurchaseId)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(purchaseGoods);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PurchaseGoodsExists(purchaseGoods.PurchaseId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["DisasterId"] = new SelectList(_context.Disasters, "DisasterId", "DisasterId", purchaseGoods.DisasterId);
-            return View(purchaseGoods);
-        }
 
-        // GET: PurchaseGoods/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.PurchaseGoods == null)
-            {
-                return NotFound();
-            }
-
-            var purchaseGoods = await _context.PurchaseGoods
-                .Include(p => p.Disaster)
-                .FirstOrDefaultAsync(m => m.PurchaseId == id);
-            if (purchaseGoods == null)
-            {
-                return NotFound();
-            }
-
-            return View(purchaseGoods);
-        }
 
         // POST: PurchaseGoods/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -160,9 +86,25 @@ namespace LoginSec.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PurchaseGoodsExists(int id)
+
+        //Non Action method to bind data to dropdown list
+        [NonAction]
+        public void PopulateDisasters()
         {
-          return _context.PurchaseGoods.Any(e => e.PurchaseId == id);
+
+
+            var DisasterCollection = _context.Disasters.ToList();
+            // var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today).ToList();
+
+            Disaster DefaultDisaster = new Disaster()
+            {
+                DisasterId = 0,
+                DisasterType = "Choose a Diaster"
+            };
+
+            DisasterCollection.Insert(0, DefaultDisaster);
+            ViewBag.Disasters = DisasterCollection;
         }
+
     }
 }

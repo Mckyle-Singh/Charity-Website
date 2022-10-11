@@ -1,0 +1,64 @@
+﻿@model LoginSec.Models.Good_Allocation
+
+@{
+    ViewData["PageTitle"] = Model.GoodsAllocationId==0?"Make a new Goods Allocation":"Edit Goods Allocation";
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5" style="background-color:#212b36">
+        <form asp-action="AddOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="GoodsAllocationId" value="@Model.GoodsAllocationId"/>
+
+            <div class="mb-3">
+                <ejs-dropdownlist id="ddlDisaster" ejs-for="DisasterId"
+                dataSource="@ViewBag.Disasters" placeholder="Disaster"
+                floatLabelType="Always" allowFiltering="true"ignoreAccent="true"filterType="Contains">
+                <e-dropdownlist-fields value="DisasterId" text="DisasterType"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+                 <span asp-validation-for="DisasterId" class="text-danger fs-6"></span>
+            </div>
+
+            <div class="mb-3">
+                <ejs-dropdownlist id="ddlGoods" ejs-for="GoodsId"
+                dataSource="@ViewBag.GoodsToAllocate" placeholder="Goods"
+                floatLabelType="Always" allowFiltering="true"ignoreAccent="true"filterType="Contains">
+                <e-dropdownlist-fields value="GoodsId" text="ItemDescription"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+                 <span asp-validation-for="GoodsId" class="text-danger fs-6"></span>
+            </div>
+
+            <div class="mb-3">
+                    <ejs-numerictextbox id="numItems" ejs-for="NumItems" placeholder="No. of Items"
+                        floatLabelType="Always" min="0"  format="0"  >
+                     </ejs-numerictextbox>
+                    <span asp-validation-for="NumItems" class="text-danger fs-6"></span>
+             </div>
+
+             <div class="mb-3">
+                    <ejs-datepicker id="date" ejs-for="Date"
+                        placeholder="Date" floatLabelType="Always"format="MMM-dd-yyyy">
+                    </ejs-datepicker>
+                    <span asp-validation-for="Date" class="text-danger fs-6"></span>
+              </div>
+            
+            <ejs-button id="submit" type="submit" content="submit"
+            cssClass="e-success"></ejs-button>
+
+        </form>
+        </div>
+    </div>
+
+      <div class="col-md-5">
+                <div class="widget h-100 d-flex justify-content-center align-items-center"
+                >
+                    <i class="fa-solid fa-money-bill-transfer fa-2xl"></i>
+                </div>
+         </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

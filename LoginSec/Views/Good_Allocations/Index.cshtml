@@ -1,54 +1,38 @@
 ﻿@model IEnumerable<LoginSec.Models.Good_Allocation>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["PageTitle"] = "GoodsAllocations";
+     ViewData["PageActionText"] = "Allocate goods";
+     ViewData["PageActionUrl"] = "/Good_Allocations/AddorEdit";
 }
 
-<h1>Index</h1>
+<div class="row">
+    <div class="col-md-12">
+        <ejs-grid id="goodsAllocations" dataSource="@Model" gridLines="None"
+        allowSorting="true">
+            <e-grid-columns>
+                <e-grid-column headerText="Type of Goods" field="AllocationTitle"  width="210px"></e-grid-column>
+                <e-grid-column headerText="Disaster" field="DisasterTitle"></e-grid-column>
+                <e-grid-column headerText="No.of Items" field="NumItems"></e-grid-column>
+                <e-grid-column headerText="Date" field="Date" width="110px" type="date" format="MMM-dd-yy" 
+                textAlign="Left"></e-grid-column>
+                <e-grid-column headerText="Actions"template="#actionColumnTemplate" width="150px"></e-grid-column>
+           </e-grid-columns>
+        </ejs-grid>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.GoodsId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Disaster)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumItems)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GoodsId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Disaster.DisasterId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumItems)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.GoodsAllocationId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.GoodsAllocationId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.GoodsAllocationId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn btn-sm no-a-decoration" href="/Good_Allocations/AddorEdit/${GoodsAllocationId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Good_Allocations/Delete/${GoodsAllocationId}" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="    return confirm(&quot; are you sure you want to delete this record ?&quot;)" >
+                <i class="fa-solid fa-trash-can fa-lg text-danger" ></i>
+            </button>
+        </form>
+    </div>
+</script>
