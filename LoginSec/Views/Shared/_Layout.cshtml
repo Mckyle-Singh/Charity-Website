@@ -47,6 +47,10 @@
                                     <a class="dropdown-item"  asp-area="" asp-controller="Disaster" asp-action="Index">Disasters</a>
                                    <a class="dropdown-item"  asp-area="" asp-controller="GoodsDonation" asp-action="Index">Goods Donations</a>
                                    <a class="dropdown-item"  asp-area="" asp-controller="MonetaryDonation" asp-action="Index">Monetary Donations</a>
+                                   <a class="dropdown-item"  asp-area="" asp-controller="Good_Allocations" asp-action="Index">Allocate Goods</a>
+                                   <a class="dropdown-item"  asp-area="" asp-controller="Monetary_Allocation" asp-action="Index">Allocate Funds</a>
+                                   <a class="dropdown-item"  asp-area="" asp-controller="Dashboard" asp-action="Index">View Dashboard</a>
+                                   <a class="dropdown-item"  asp-area="" asp-controller="PurchaseGoods" asp-action="Index">Purchase Goods</a>
                                   </div>
                             </div>
                     </ul>
@@ -56,35 +60,40 @@
         </nav>
     </header>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                 <main role="main" class="pb-3">
-                     <div class="row">
-                         <div class="col-md-7">
-                             <div class="d-flex flex-column mb-5">
-                                 <div class="d-flex mb-1">
-                                     <div class="flex-grow-1">
-                                        <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
-                                     </div>
-                                     <div>
-                                        @if (ViewData["PageActionText"] != null)
-                                        {
-                                            <a class="btn btn-success bg-warning text-black"  href="@ViewData["PageActionUrl"]">
-                                                @ViewData["PageActionText"]
-                                            </a>
-                                        }
-                                      </div>
-                                 </div>
-                                 @*breadcrumb*@
-                                 <ejs-breadcrumb id="breadcrumb"></ejs-breadcrumb>
-                             </div>
-                         </div>
-                     </div>
-                    @RenderBody()
-                  </main>
-            </div>
-       </div>
+    <div class="main-content">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="@(ViewData["isDashboard"] == null?"col-md-10":"col-md-12")">
+                     <main role="main" class="pb-3">
+                        @if (ViewData["isDashboard"] == null)
+                        {
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="d-flex flex-column mb-5">
+                                        <div class="d-flex mb-1">
+                                            <div class="flex-grow-1">
+                                                <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+                                            </div>
+                                            <div>
+                                                @if (ViewData["PageActionText"] != null)
+                                                {
+                                                    <a class="btn btn-success bg-warning text-black"  href="@ViewData["PageActionUrl"]">
+                                                        @ViewData["PageActionText"]
+                                                    </a>
+                                                }
+                                            </div>
+                                        </div>
+                                        @*breadcrumb*@
+                                        <ejs-breadcrumb id="breadcrumb"></ejs-breadcrumb>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @RenderBody()
+                      </main>
+                </div>
+           </div>
+        </div>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

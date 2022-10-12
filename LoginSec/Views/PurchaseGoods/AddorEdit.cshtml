@@ -4,52 +4,69 @@
      ViewData["PageTitle"] = Model.PurchaseId==0?"Make a new Purchase":"Edit Purchase";
 }
 
-<h1>Create</h1>
 
-<h4>PurchaseGoods</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddOrEdit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ItemDescription" class="control-label"></label>
-                <input asp-for="ItemDescription" class="form-control" />
-                <span asp-validation-for="ItemDescription" class="text-danger"></span>
+    <div class="col-md-7">
+        <div class="widget p-5 " style="background-color:#212b36" >
+             <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="PurchaseId" value="@Model.PurchaseId"/>
+
+                 <div class="mb-3">
+                    <div class='e-btn-group custom-rbt-group'>
+                        <input type="radio" id="radioleft" name="Type" value="Expense" checked="@(Model.Type="Expense")" />
+                        <label class="e-btn" for="radioleft">Expense</label>
+                        <input type="radio" id="radiomiddle" name="Type" value="Other" checked="@(Model.Type="Other")" />
+                        <label class="e-btn" for="radiomiddle">Other</label>
+                    </div>
+                </div>
+
+                 <div class="mb-3">
+                     <ejs-textbox id="itemDescription" placeholder=" Product Name" ejs-for="ItemDescription"
+                        floatLabelType="Always" multiline="false">
+                     </ejs-textbox>
+                    <span asp-validation-for="ItemDescription" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                 <ejs-numerictextbox id="Amount" ejs-for="PurchaseAmount" placeholder="Amount"
+                floatLabelType="Always" min="0" format="c0" >
+                </ejs-numerictextbox>
+                <span asp-validation-for="PurchaseAmount" class="text-danger fs-6" ></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PurchaseAmount" class="control-label"></label>
-                <input asp-for="PurchaseAmount" class="form-control" />
-                <span asp-validation-for="PurchaseAmount" class="text-danger"></span>
+
+
+            <div class="mb-3">
+                <ejs-dropdownlist id="ddlDisaster" ejs-for="DisasterId"
+                dataSource="@ViewBag.Disasters" placeholder="Disaster"
+                floatLabelType="Always" allowFiltering="true"ignoreAccent="true"filterType="Contains">
+                <e-dropdownlist-fields value="DisasterId" text="DisasterType"></e-dropdownlist-fields>
+                </ejs-dropdownlist>
+                 <span asp-validation-for="DisasterId" class="text-danger fs-6"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
+
+
+             <div class="mb-3">
+               <ejs-datepicker id="startdate" ejs-for="Date"placeholder="Start Date" floatLabelType="Always"
+                    format="MMM-dd-yyyy">
+                </ejs-datepicker>
+                 <span asp-validation-for="Date" class="text-danger fs-6"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DisasterId" class="control-label"></label>
-                <select asp-for="DisasterId" class ="form-control" asp-items="ViewBag.DisasterId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                
+           
+               <ejs-button id="submit" type="submit" content="submit" cssClass="e-success"></ejs-button>
+            </form>
+        </div>
+       
     </div>
+        <div class="col-md-5">
+                <div class="widget h-100 d-flex justify-content-center align-items-center" 
+                >
+                    <i class="fa-solid fa-shapes fa-2xl"></i>
+                </div>
+         </div>
 </div>
 
-<div class="col-md-5">
-                <div class="widget h-100 d-flex justify-content-center align-items-center " 
-                 style="background-color:#212b36">
-                    <i class="fa-solid fa-money-bill-transfer fa-2xl " ></i>
-                </div>
-     </div>
-</div>
 
 
 @section Scripts {

@@ -11,7 +11,7 @@
         <ejs-grid id="monetaryDonations" dataSource="@Model" gridLines="None"
         allowSorting="true">
             <e-grid-columns>
-                <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
+                <e-grid-column headerText="Category" field="CategoryTitleWithIcon" width="110px"></e-grid-column>
                 <e-grid-column headerText="Date" field="Date" width="110px" type="date" format="MMM-dd-yy" 
                 textAlign="Left"></e-grid-column>
                 <e-grid-column headerText="Amount" field="Amount" width="110px" textAlign="Right" format="c2"></e-grid-column>
@@ -20,11 +20,11 @@
            </e-grid-columns>
         </ejs-grid>
     </div>
-    <div class="col-md-4">
+    @*<div class="col-md-4">
            <div class="widget h-100 d-flex justify-content-center align-items-center">
                 <i class="fa-solid fa-money-bill-transfer fa-2xl"></i>
            </div>
-     </div>
+     </div>*@
 </div>
 
 <script id="typeColumnTemplate" type="text/x-template">
