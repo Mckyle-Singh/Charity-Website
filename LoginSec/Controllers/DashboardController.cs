@@ -49,10 +49,12 @@ namespace LoginSec.Controllers
 
             //Balancee(Balence after Allocatiing donations to disaster )
             int Balance = TotalIncome - TotalExpense;
+
             //sets negative balance
             CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
             culture.NumberFormat.CurrencyNegativePattern = 1;
             ViewBag.Balance = String.Format(culture, "{0:C0}", Balance);
+
 
             //Doughnut Chart - Expense By Category
 
@@ -123,6 +125,7 @@ namespace LoginSec.Controllers
            
         }
     }
+    //Added data to be used in splinchart 
 
     public class SplineChartData
     {

@@ -88,13 +88,13 @@ namespace LoginSec.Controllers
         {
 
 
-            var DisasterCollection = _context.Disasters.ToList();
-            //var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today).ToList();
+            //var DisasterCollection = _context.Disasters.ToList();
+            var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today).ToList();
 
             Disaster DefaultDisaster = new Disaster()
             {
                 DisasterId = 0,
-                DisasterType = "Choose a Diaster"
+                DisasterType = "Choose a Disaster"
             };
 
             DisasterCollection.Insert(0, DefaultDisaster);
