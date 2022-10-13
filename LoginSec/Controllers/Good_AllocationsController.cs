@@ -95,8 +95,8 @@ namespace LoginSec.Controllers
         {
 
 
-            var DisasterCollection = _context.Disasters.ToList();
-            // var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today).ToList();
+            //var DisasterCollection = _context.Disasters.ToList();
+            var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today).ToList();
 
             Disaster DefaultDisaster = new Disaster()
             {
