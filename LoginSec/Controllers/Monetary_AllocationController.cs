@@ -89,7 +89,7 @@ namespace LoginSec.Controllers
 
 
             //var DisasterCollection = _context.Disasters.ToList();
-            var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today).ToList();
+            var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today && x.StartDate==DateTime.Today).ToList();
 
             Disaster DefaultDisaster = new Disaster()
             {
@@ -102,3 +102,7 @@ namespace LoginSec.Controllers
         }
     }
 }
+
+
+//Build an Expense Tracker with Asp.Net Core MVC. 2022. YouTube video, added by CodeAffection. [Online]. Available at: 
+//https://youtu.be/zQ5eijfpuu8 [Accessed 10 October 2022]
