@@ -51,7 +51,7 @@
     <div class="col-md-4">
         <div class="widget chart">
             <div class="p-4">
-                <h5 class="fw-bold">Expense By Category</h5>
+                <h5 class="fw-bold">Income By Category</h5>
             </div>
             <ejs-accumulationchart id="doughnutchart" enableSmartLabels background="#1a222b">
                 <e-accumulation-series-collection>
@@ -107,10 +107,9 @@
 @*Recent Transactions and More*@
 <div class="row">
     <div class="col-md-6">
+        <h5 class="fw-bold">Recent Monetary Allocations</h5>
         <div class="widget">
-            <div class="p-4">
-                <h5 class="fw-bold">Recent Transactions</h5>
-            </div>
+         
             <div class="px-4 pb-4">
                 <ejs-grid id="recent-transactions"
                 dataSource="@ViewBag.RecentTransactions" gridLines="None">
@@ -124,7 +123,7 @@
     </div>
 
      <div class="col-md-6">
-                <h5 class="fw-bold">Recent Transactions</h5>
+                <h5 class="fw-bold">Disasters</h5>
                 <ejs-grid id="Active-Disasters"
                 dataSource="@ViewBag.ActiveDisasters" gridLines="None">
                     <e-grid-columns>

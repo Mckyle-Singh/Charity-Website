@@ -24,3 +24,6 @@ namespace LoginSec.Models
         public DateTime EndDate { get; set; } = DateTime.Now;
     }
 }
+
+//Build an Expense Tracker with Asp.Net Core MVC. 2022. YouTube video, added by CodeAffection. [Online]. Available at: 
+//https://youtu.be/zQ5eijfpuu8 [Accessed 10 October 2022]
