@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LoginSec.Areas.Identity.Data;
 using LoginSec.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LoginSec.Controllers
 {
@@ -18,6 +19,7 @@ namespace LoginSec.Controllers
         {
             _context = context;
         }
+        [Authorize]
 
         // GET: Good_Allocations
         public async Task<IActionResult> Index()
@@ -96,12 +98,12 @@ namespace LoginSec.Controllers
 
 
             //var DisasterCollection = _context.Disasters.ToList();
-            var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today && x.StartDate ==DateTime.Today).ToList();
+            var DisasterCollection = _context.Disasters.Where(x => x.EndDate > DateTime.Today && x.StartDate <=DateTime.Today).ToList();
 
             Disaster DefaultDisaster = new Disaster()
             {
                 DisasterId = 0,
-                DisasterType = "Choose a Diaster"
+                DisasterType = "Choose a Disaster"
             };
 
             DisasterCollection.Insert(0, DefaultDisaster);
