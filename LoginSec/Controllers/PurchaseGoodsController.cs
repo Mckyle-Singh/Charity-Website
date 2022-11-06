@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LoginSec.Areas.Identity.Data;
 using LoginSec.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LoginSec.Controllers
 {
@@ -18,6 +19,8 @@ namespace LoginSec.Controllers
         {
             _context = context;
         }
+
+        [Authorize]
 
         // GET: PurchaseGoods
         public async Task<IActionResult> Index()

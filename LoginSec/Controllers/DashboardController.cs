@@ -1,5 +1,6 @@
 ﻿using LoginSec.Areas.Identity.Data;
 using LoginSec.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -14,7 +15,8 @@ namespace LoginSec.Controllers
         {
             _context = context;
         }
-        
+
+        [Authorize]
 
         public async Task<ActionResult> Index()
         {

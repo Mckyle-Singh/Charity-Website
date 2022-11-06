@@ -22,7 +22,7 @@ namespace LoginSec.Controllers
             _context = context;
         }
         [Authorize]
-        // GET: Categories
+        // GET: Categories fetches the categories list
         public async Task<IActionResult> Index()
         {
               return _context.Categories != null ? 

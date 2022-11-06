@@ -25,6 +25,16 @@ namespace LoginSec.Models
 
         public DateTime Date { get; set; } = DateTime.Now;
 
+        //Creating Title for GoodsDonations in Goods_Allocation table
+        [NotMapped]
+        public string? AllocationTitle
+        {
+            get
+            {
+                return GoodsDonation == null ? " " : GoodsDonation.ItemDescription;
+            }
+        }
+
         //Creating Title for Disasters in Goods_Allocation table
         [NotMapped]
         public string? DisasterTitle
@@ -36,15 +46,7 @@ namespace LoginSec.Models
         }
 
 
-        //Creating Title for GoodsDonations in Goods_Allocation table
-        [NotMapped]
-        public string? AllocationTitle
-        {
-            get
-            {
-                return GoodsDonation == null ? " " : GoodsDonation.ItemDescription;
-            }
-        }
+        
     }
 }
 
