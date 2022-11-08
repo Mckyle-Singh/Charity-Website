@@ -24,8 +24,8 @@ namespace LoginSec.Controllers
         // GET: Good_Allocations
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Good_Allocations.Include(s=>s.GoodsDonation)
-                .Include(g => g.Disaster);
+            var applicationDbContext = _context.Good_Allocations
+                .Include(g => g.Disaster).Include(s => s.GoodsDonation);
             return View(await applicationDbContext.ToListAsync());
         }
 
