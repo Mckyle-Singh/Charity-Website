@@ -19,7 +19,7 @@ namespace LoginSec.Controllers
         {
             _context = context;
         }
-        [Authorize]
+        
 
         // GET: Monetary_Allocation
         public async Task<IActionResult> Index()
@@ -28,7 +28,15 @@ namespace LoginSec.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        // GET: Monetary_Allocation
+        public async Task<IActionResult> PublicAllocations()
+        {
+            var applicationDbContext = _context.Monetary_Allocations.Include(m => m.Disaster).Where(x => x.Disaster.EndDate > DateTime.Today && x.Disaster.StartDate <= DateTime.Today);
+            return View(await applicationDbContext.ToListAsync());
+        }
 
+
+        [Authorize]
 
         // GET: Monetary_Allocation/AddOrEdit
         public IActionResult AddOrEdit(int id = 0)
@@ -40,7 +48,7 @@ namespace LoginSec.Controllers
                 return View(_context.Monetary_Allocations.Find(id));
         }
 
-
+        
         // POST: Monetary_Allocation/AddOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
