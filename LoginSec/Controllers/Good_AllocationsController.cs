@@ -29,6 +29,12 @@ namespace LoginSec.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> PublicAllocation()
+        {
+            var applicationDbContext = _context.Good_Allocations
+                .Include(g => g.Disaster).Include(s => s.GoodsDonation).Where(x => x.Disaster.EndDate > DateTime.Today);
+            return View(await applicationDbContext.ToListAsync());
+        }
 
 
 

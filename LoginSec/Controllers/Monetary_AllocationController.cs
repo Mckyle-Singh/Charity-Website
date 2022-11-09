@@ -29,7 +29,7 @@ namespace LoginSec.Controllers
         }
 
         // GET: Monetary_Allocation
-        public async Task<IActionResult> PublicAllocations()
+        public async Task<IActionResult> PublicAllocation()
         {
             var applicationDbContext = _context.Monetary_Allocations.Include(m => m.Disaster).Where(x => x.Disaster.EndDate > DateTime.Today && x.Disaster.StartDate <= DateTime.Today);
             return View(await applicationDbContext.ToListAsync());
