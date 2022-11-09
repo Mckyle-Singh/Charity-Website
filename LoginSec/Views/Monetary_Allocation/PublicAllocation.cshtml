@@ -1,0 +1,21 @@
+﻿@model IEnumerable<LoginSec.Models.Monetary_Allocation>
+
+@{
+    ViewData["PageTitle"] = "Monetary Allocation List";
+    
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ejs-grid id="goodsAllocations" dataSource="@Model" gridLines="None"
+        allowSorting="true">
+            <e-grid-columns>
+                
+                <e-grid-column headerText="Active Disaster" field="DisasterTitle"></e-grid-column>
+                <e-grid-column headerText="Allocated Amount" field="Amount" width="110px" format="c2"></e-grid-column>
+                
+           </e-grid-columns>
+        </ejs-grid>
+    </div>
+</div>
+
