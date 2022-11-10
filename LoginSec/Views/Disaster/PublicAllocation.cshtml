@@ -1,0 +1,30 @@
+﻿@model IEnumerable<LoginSec.Models.Disaster>
+
+@{
+    ViewData["PageTitle"] = "Active Disasters";
+    
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ejs-grid id="disaster" dataSource="@Model" gridLines="None"
+        allowSorting="true">
+            <e-grid-columns>
+                <e-grid-column headerText="Type" field="DisasterType"></e-grid-column>
+                <e-grid-column headerText="Location" field="DisasterLocation" width="150px"></e-grid-column>
+                <e-grid-column headerText="Description" field="Description" width="150px"></e-grid-column>
+                <e-grid-column headerText="Required Aids" field="RequiredAids" width="150px"></e-grid-column>
+                <e-grid-column headerText="Start Date" field="StartDate" width="150px" type="date" format="MMM-dd-yy" 
+                textAlign="Left"></e-grid-column>
+                <e-grid-column headerText="End Date" field="EndDate" width="110px" type="date" format="MMM-dd-yy" 
+                textAlign="Left"></e-grid-column>
+               
+            </e-grid-columns>
+
+        </ejs-grid>
+    </div>
+    
+</div>
+
+
+ 

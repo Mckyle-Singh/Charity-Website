@@ -29,6 +29,13 @@ namespace LoginSec.Controllers
                           Problem("Entity set 'ApplicationDbContext.Disasters'  is null.");
         }
 
+        // GET: Monetary_Allocation
+        public async Task<IActionResult> PublicAllocation()
+        {
+            var applicationDbContext = _context.Disasters.Where(x => x.EndDate > DateTime.Today && x.StartDate <= DateTime.Today);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
 
 
         // GET: Disaster/AddOrEdit
