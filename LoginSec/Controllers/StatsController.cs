@@ -24,7 +24,7 @@ namespace LoginSec.Controllers
               .Include(x => x.Category)
               .ToListAsync();
 
-            List<Disaster> SelectedDisasters = await _context.Disasters
+            List<Disaster> SelectedDisasters = await _context.Disasters.Where(x => x.EndDate > DateTime.Today && x.StartDate <= DateTime.Today)
               .ToListAsync();
 
 

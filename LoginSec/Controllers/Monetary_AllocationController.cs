@@ -19,8 +19,8 @@ namespace LoginSec.Controllers
         {
             _context = context;
         }
-        
 
+        [Authorize]
         // GET: Monetary_Allocation
         public async Task<IActionResult> Index()
         {
