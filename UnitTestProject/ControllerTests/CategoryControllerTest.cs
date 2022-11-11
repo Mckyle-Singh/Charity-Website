@@ -21,7 +21,7 @@ namespace UnitTestProject.ControllerTests
             var controller = new CategoryController(_context);
             var result = controller.AddOrEdit() as Microsoft.AspNetCore.Mvc.ViewResult;
             var product = (Category)result.ViewData.Model;
-            Assert.AreEqual("Expense", product.Type);
+            Assert.AreEqual("Monetary", product.Type);
         }
     }
 }
