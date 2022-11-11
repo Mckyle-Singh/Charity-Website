@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginSec", "LoginSec\LoginSec.csproj", "{1EFEF1CB-D494-46DA-92C1-4A8BFDA8C941}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonationUnitTest", "DonationUnitTest\DonationUnitTest.csproj", "{86B8DE47-CCE1-4846-81F4-4CC99E6FB8D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1EFEF1CB-D494-46DA-92C1-4A8BFDA8C941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EFEF1CB-D494-46DA-92C1-4A8BFDA8C941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EFEF1CB-D494-46DA-92C1-4A8BFDA8C941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86B8DE47-CCE1-4846-81F4-4CC99E6FB8D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86B8DE47-CCE1-4846-81F4-4CC99E6FB8D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B8DE47-CCE1-4846-81F4-4CC99E6FB8D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86B8DE47-CCE1-4846-81F4-4CC99E6FB8D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
