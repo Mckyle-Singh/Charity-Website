@@ -22,5 +22,16 @@ namespace DonationUnitTest
             var product = (Category)result.ViewData.Model;
             Assert.AreEqual("Monetary", product.Type);
         }
+
+
+        //This method will check wether the index method returns a view page
+        [TestMethod]
+        public async Task ControllerIndexPageTest_ReturnPage()
+        {
+            var controller = new CategoryController(_context);
+            var result = controller.Index();
+            Assert.IsNotNull(result);
+
+        }
     }
 }
