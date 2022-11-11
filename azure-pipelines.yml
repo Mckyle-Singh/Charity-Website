@@ -27,5 +27,11 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+    
+- task: DotNetCoreCLI@2
+  displayName: 'Run unit tests '
+  inputs:
+    command: test
+    projects: '**/*Unit*/*.csproj'
+    arguments: '--no-build --configuration $(buildConfiguration)'
 
